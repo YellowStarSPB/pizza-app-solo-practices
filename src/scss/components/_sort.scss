@@ -1,0 +1,92 @@
+@import '../variables';
+
+.sort {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    height: 58px;
+    @media (max-width: 1060px) {
+        padding-bottom: 0;
+    }
+
+    &__label {
+        display: flex;
+        align-items: center;
+
+        div {
+            display: flex;
+            align-items: center;
+            svg {
+                margin-right: 8px;
+                transform: rotate(180deg);
+            }
+            .show {
+                transform: rotate(0);
+            }
+            b {
+                margin-right: 8px;
+                @media (max-width: 340px) {
+                    margin: 0;
+                }
+            }
+        }
+
+        span {
+            color: $orange;
+            border-bottom: 1px dashed $orange;
+            cursor: pointer;
+        }
+        @media (max-width: 340px) {
+            flex-direction: column;
+        }
+    }
+
+    &__popup {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        background: #ffffff;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px 0;
+        width: 160px;
+
+        ul {
+            overflow: hidden;
+            li {
+                padding: 12px 20px;
+                cursor: pointer;
+
+                &.active,
+                &:hover {
+                    background: rgba(254, 95, 30, 0.05);
+                }
+
+                &.active {
+                    font-weight: bold;
+                    color: $orange;
+                }
+            }
+        }
+    }
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        padding: 5px;
+        border: 1px solid #fe5f1e;
+        border-radius: 30px;
+        margin-left: 5px;
+        cursor: pointer;
+        background-color: white;
+        color: #fe5f1e;
+        img {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
