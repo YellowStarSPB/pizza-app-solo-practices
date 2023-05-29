@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import arrowSort from '../assets/img/arrow-sort.png';
 import { setSortPosition, setSortType } from '../redux/slices/filterSlice';
 
-const list = [
+export const sortList = [
     { name: 'популярности', sortProp: 'rating' },
     { name: 'цене', sortProp: 'price' },
     { name: 'алфавиту', sortProp: 'title' },
@@ -44,7 +44,7 @@ function Sort() {
             {showPopup && (
                 <div className="sort__popup">
                     <ul>
-                        {list.map((obj, index) => (
+                        {sortList.map((obj, index) => (
                             <li
                                 key={index}
                                 onClick={() => onSelectOptions(obj)}
