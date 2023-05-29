@@ -1,16 +1,22 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import arrowSort from '../assets/img/arrow-sort.png';
-function Sort({ sortType, onChangeSortType, sortPosition, onChangeSortPosition }) {
+import { setSortPosition, setSortType } from '../redux/slices/filterSlice';
+
+const list = [
+    { name: 'популярности', sortProp: 'rating' },
+    { name: 'цене', sortProp: 'price' },
+    { name: 'алфавиту', sortProp: 'title' },
+];
+
+function Sort() {
     const [showPopup, setShowPopup] = React.useState(false);
 
-    const list = [
-        { name: 'популярности', sortProp: 'rating' },
-        { name: 'цене', sortProp: 'price' },
-        { name: 'алфавиту', sortProp: 'title' },
-    ];
+    const dispatch = useDispatch();
+    const { sortType, sortPosition } = useSelector((state) => state.filters);
 
-    const onSelectVariant = (obj) => {
-        onChangeSortType(obj);
+    const onSelectOptions = (obj) => {
+        dispatch(setSortType(obj));
         setShowPopup((prev) => !prev);
     };
 
@@ -41,7 +47,7 @@ function Sort({ sortType, onChangeSortType, sortPosition, onChangeSortPosition }
                         {list.map((obj, index) => (
                             <li
                                 key={index}
-                                onClick={() => onSelectVariant(obj)}
+                                onClick={() => onSelectOptions(obj)}
                                 className={sortType.name === obj.name ? 'active' : ''}
                             >
                                 {obj.name}
@@ -50,7 +56,7 @@ function Sort({ sortType, onChangeSortType, sortPosition, onChangeSortPosition }
                     </ul>
                 </div>
             )}
-            <button onClick={() => onChangeSortPosition(!sortPosition)}>
+            <button onClick={() => dispatch(setSortPosition())}>
                 {sortPosition === false ? (
                     <img
                         src={arrowSort}
